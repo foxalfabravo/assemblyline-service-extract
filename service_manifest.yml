@@ -38,6 +38,10 @@ submission_params:
     name: continue_after_extract
     type: bool
     value: false
+  - default: false
+    name: add_potential_password_as_supplementary
+    type: bool
+    value: false
 
 heuristics:
   - heur_id: 1

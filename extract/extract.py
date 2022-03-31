@@ -245,11 +245,11 @@ class Extract(ServiceBase):
 
         request.result = result
 
-        # Temporary debugging to see which potential passwords are sent to the submission data
-        temp_path = os.path.join(self.working_directory, "potential_passwords.json")
-        with open(temp_path, "w") as f:
-            f.write(json.dumps(self.get_passwords(request)))
-        request.add_supplementary(temp_path, "potential_passwords.json", "Potential passwords used")
+        if request.get_param("add_potential_password_as_supplementary"):
+            temp_path = os.path.join(self.working_directory, "potential_passwords.json")
+            with open(temp_path, "w") as f:
+                f.write(json.dumps(self.get_passwords(request)))
+            request.add_supplementary(temp_path, "potential_passwords.json", "Potential passwords used")
 
     def extract(self, request: ServiceRequest, local: str):
         """Iterate through extraction methods to extract archived, embedded or encrypted content from a sample.
